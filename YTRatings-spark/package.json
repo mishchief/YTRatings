@@ -1,0 +1,27 @@
+{
+  "name": "YTRatings",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "apollo-client-preset": "^1.0.8",
+    "graphql": "^0.13.1",
+    "graphql-tag": "^2.8.0",
+    "history": "^4.7.2",
+    "lodash": "^4.17.5",
+    "prop-types": "^15.6.1",
+    "react": "^16.2.0",
+    "react-apollo": "^2.0.4",
+    "react-dom": "^16.2.0",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.1.1",
+    "semantic-ui-css": "^2.3.0",
+    "semantic-ui-react": "^0.78.3",
+    "styled-components": "^3.2.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
