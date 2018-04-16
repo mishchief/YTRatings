@@ -21,8 +21,11 @@ import './styles/GlobalStyle.js';
 import NotFound from './common/NotFound'
 import HomeView from './views/HomeView/HomeView';
 import CreateView from './views/CreateView';
-import DetailView from './views/YouTuberView/DetailView';
+import DetailView from './views/DetailView/DetailView';
 import ReviewView from './views/ReviewView/ReviewView';
+import AllYouTubers from './views/AllYouTubersView/AllYouTubers';
+import CategoriesView from './views/CategoriesView/CategoriesView';
+import AllReviewsView from './views/AllReviewsView/AllReviewsView'
 
 
 const client = new ApolloClient({
@@ -45,8 +48,11 @@ render((
                 <Switch>
                     <Route exact path="/" component={HomeView}/>
                     <Route exact path="/messages/create/" component={CreateView}/>
-                    <Route exact path="/:name/" component={DetailView}/>
-                    <Route exact path="/:name/:category" component={ReviewView}/>
+                    <Route exact path="/youtuber/:name/" component={DetailView}/>
+                    <Route exact path="/youtuber/:name/:category/" component={ReviewView}/>
+                    <Route exact path="/youtubers/" component={AllYouTubers}/>
+                    <Route exact path="/categories/" component={CategoriesView}/>
+                    <Route exact path="/allreviews/" component={AllReviewsView}/>
                     <Route render={NotFound}/>
                 </Switch>
             </App>

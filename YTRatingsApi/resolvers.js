@@ -127,11 +127,17 @@ export default {
     YouTuber: {
         categories: async (parent, args, {Categories}) => {
             return await Categories.find({youtuberName: parent.name})
+        },
+        reviews: async (parent, args, {Review}) => {
+            return await Review.find({youtuberName: parent.name})
         }
     },
     Category: {
         reviews: async (parent, args, {Review}) => {
             return await Review.find({youtuberName: parent.youtuberName, category: parent.name})
+        },
+        youtuber: async (parent, args, {YouTuber}) => {
+            return await YouTuber.find({name: parent.youtuberName})
         }
     }
 }

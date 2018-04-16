@@ -13,7 +13,9 @@ type Category {
     _id: String!
     name: String
     youtuberName: String
+    description: String
     reviews: [Review]
+    youtuber: [YouTuber]
 }
 
 type YouTuber {
@@ -22,6 +24,7 @@ type YouTuber {
     uri: String
     img: String
     categories: [Category]
+    reviews: [Review]
 }
 
 type Query {
@@ -29,7 +32,7 @@ type Query {
     allCategories: [Category!]!
     allReviews: [Review!]!
     youtuber(_id: String, name: String): YouTuber!
-    category(name: String!, youtuberName: String): Category!
+    category(name: String!, youtuberName: String, description: String): Category!
     review(_id: String, title: String, youtuberName: String, category: String ): Review!
 }
 

@@ -1,32 +1,17 @@
-import _ from 'lodash';
 import React from 'react';
 import {graphql} from 'react-apollo';
 import gql from 'graphql-tag';
+import AllReviewsList from './components/AllReviewsList';
+import _ from "lodash";
 
-import ReviewTable from './ReviewTable';
-
-const query = gql`
-query Anything($name: String! $category: String!){
-    category (name: $category youtuberName: $name){
-      name
-      youtuberName
-      reviews{
-        _id
-        title
-        rating
-      }
-    }
-}`;
-
-class ReviewView extends React.Component {
+class AllReviewsView extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            categoryName: this.props.match.params.category,
             column: null,
             tableData: [],
             direction: null,
-        }
+        };
         this.goBack = this.goBack.bind(this);
         this.handleSort = this.handleSort.bind(this);
     }
@@ -35,7 +20,7 @@ class ReviewView extends React.Component {
     }
 
     loadTableData() {
-        this.setState({tableData: this.props.data.category.reviews});
+        this.setState({tableData: this.props.data.allReviews});
     }
 
     goBack() {
@@ -50,7 +35,7 @@ class ReviewView extends React.Component {
                 column: clickedColumn,
                 tableData: _.sortBy(tableData, [clickedColumn]),
                 direction: 'ascending',
-            })
+            });
 
             return
         }
@@ -59,7 +44,7 @@ class ReviewView extends React.Component {
             tableData: tableData.reverse(),
             direction: direction === 'ascending' ? 'descending' : 'ascending',
         })
-    }
+    };
 
     render() {
         let {data} = this.props;
@@ -68,20 +53,19 @@ class ReviewView extends React.Component {
         } else if (this.state.tableData.length === 0) {
             this.loadTableData();
         }
-        return (<ReviewTable data={this.state.tableData} category={this.state.categoryName} goBack={this.goBack}
-                             sort={this.handleSort} column={this.state.column} direction={this.state.direction}
-                             name={this.props.match.params.name}/>)
+        return (<AllReviewsList data={this.state.tableData} goBack={this.goBack}
+                             sort={this.handleSort} column={this.state.column} direction={this.state.direction}/>)
     }
 }
 
-const queryOptions = {
-    options: props => ({
-        variables: {
-            name: props.match.params.name,
-            category: props.match.params.category
-        },
-    }),
-};
-
-ReviewView = graphql(query, queryOptions)(ReviewView);
-export default ReviewView;
+export default graphql(gql`
+query {
+	allReviews{
+	_id
+    title
+    rating
+    category
+    youtuberName
+    salesURI
+  }
+}`)(AllReviewsView);

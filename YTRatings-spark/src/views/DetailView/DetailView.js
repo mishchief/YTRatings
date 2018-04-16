@@ -2,16 +2,22 @@ import React from 'react';
 import {graphql} from 'react-apollo';
 import gql from 'graphql-tag';
 
-import ReviewsList from './ReviewsList';
+import YouTuberDetail from './YouTuberDetail';
 
 const query = gql`
-  query Anything($name: String!){
-  youtuber (name: $name){
-    name
-    categories{
-      category
-    }
-}
+query ($name: String!){
+    youtuber (name: $name){
+        name
+        img
+        uri
+        categories{
+            _id
+            name
+        }
+        reviews {
+            title
+        }
+    }   
 }`;
 
 class DetailView extends React.Component {
@@ -20,8 +26,7 @@ class DetailView extends React.Component {
         if (data.loading) {
             return <div>Loading...</div>
         }
-        console.log(data.youtuber[0]);
-        return ( <ReviewsList youtuber={data.youtuber[0]}/>)
+        return (<YouTuberDetail youtuber={data.youtuber}/>)
     }
 }
 

@@ -24,18 +24,20 @@ mongoose.connect(config.db);
 
 let db = mongoose.connection;
 
-let corsOptions = {
-    origin: 'http://localhost:3000',
-    credentials: true,
-    accept: 'application/x-www-form-urlencoded',
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-};
+// let corsOptions = {
+//     origin: 'http://localhost:3000',
+//     credentials: true,
+//     accept: 'application/x-www-form-urlencoded',
+//     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+// };
 
-app.use(cors(corsOptions));
+app.use('*', cors({ origin: 'http://localhost:3000' }));
 // bodyParser is needed just for POST.
 app.use('/graphql', bodyParser.json(), graphqlExpress({ schema, context: { YouTuber, Categories, Review } }));
 
-app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
+app.use('/graphiql', graphiqlExpress({
+    endpointURL: '/graphql'
+}));
 
 app.listen(4000, () => {
     console.log('Server is running on port 4000');

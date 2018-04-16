@@ -1,15 +1,13 @@
 import React from 'react';
 import {graphql} from 'react-apollo';
 import gql from 'graphql-tag';
+import YouTubersGrid from './components/YouTubersGrid';
 
-import HomeViewLayout from './components/HomeViewLayout';
-import HomeGrid from './components/HomeGrid';
-
-function HomeView({data: {allYouTubers}}) {
+function AllYouTubers({data: {allYouTubers}}) {
 
     return (
         <div>
-            {allYouTubers && <HomeGrid youtubers={allYouTubers}/>}
+            {allYouTubers && <YouTubersGrid youtubers={allYouTubers}/>}
         </div>
     );
 }
@@ -23,4 +21,4 @@ export default graphql(gql`
     uri
   }
 }
-`)(HomeView);
+`)(AllYouTubers);

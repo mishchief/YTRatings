@@ -8,8 +8,17 @@ import {
     Segment,
     Sidebar,
 } from 'semantic-ui-react'
+import {Link} from 'react-router-dom';
+import history from '../history.js';
 
 class MobileContainer extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            activeItem: history.location.pathname
+        }
+        this.handleItemClick = this.handleItemClick.bind(this);
+    }
     state = {}
 
     handlePusherClick = () => {
@@ -19,19 +28,29 @@ class MobileContainer extends Component {
     }
 
     handleToggle = () => this.setState({ sidebarOpened: !this.state.sidebarOpened })
+    handleItemClick(e, {id}) {
+        this.setState({activeItem: id})
+    }
 
     render() {
         const { children } = this.props
         const { sidebarOpened } = this.state
+        const {activeItem} = this.state
+
+        history.listen((location) => {
+            this.setState({activeItem: history.location.pathname})
+        });
 
         return (
-            <Responsive >
+            <Responsive maxWidth={767}>
                 <Sidebar.Pushable>
                     <Sidebar as={Menu} animation='push' inverted vertical visible={sidebarOpened}>
-                        <Menu.Item as='a' active>Home</Menu.Item>
-                        <Menu.Item as='a'>Work</Menu.Item>
-                        <Menu.Item as='a'>Company</Menu.Item>
-                        <Menu.Item as='a'>Careers</Menu.Item>
+                        <Link to={'/'}><Menu.Item active={activeItem === '/'}>Home</Menu.Item></Link>
+                        <Link to={'/youtubers'}><Menu.Item active={activeItem === '/youtubers'}>YouTubers</Menu.Item></Link>
+                        <Link to={'/categories'}><Menu.Item active={activeItem === '/categories'}>Categories</Menu.Item></Link>
+                        <Link to={'/allreviews'}><Menu.Item active={activeItem === '/allreviews'}>All Reviews</Menu.Item></Link>
+                        <Link to={'/donate'}><Menu.Item active={activeItem === '/donate'}>Donate</Menu.Item></Link>
+                        <Link to={'/about'}><Menu.Item active={activeItem === '/about'}>About</Menu.Item></Link>
                     </Sidebar>
 
                     <Sidebar.Pusher dimmed={sidebarOpened} onClick={this.handlePusherClick} style={{ minHeight: '100vh' }}>
