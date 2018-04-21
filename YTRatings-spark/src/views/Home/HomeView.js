@@ -9,7 +9,7 @@ function HomeView({data: {allYouTubers}}) {
 
     return (
         <div>
-            {allYouTubers && <HomeGrid youtubers={allYouTubers}/>}
+            <HomeViewLayout/>
         </div>
     );
 }

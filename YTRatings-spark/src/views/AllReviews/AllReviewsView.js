@@ -12,7 +12,6 @@ class AllReviewsView extends React.Component {
             tableData: [],
             direction: null,
         };
-        this.goBack = this.goBack.bind(this);
         this.handleSort = this.handleSort.bind(this);
     }
 
@@ -21,10 +20,6 @@ class AllReviewsView extends React.Component {
 
     loadTableData() {
         this.setState({tableData: this.props.data.allReviews});
-    }
-
-    goBack() {
-        this.props.history.goBack();
     }
 
     handleSort = clickedColumn => () => {
@@ -54,7 +49,7 @@ class AllReviewsView extends React.Component {
             this.loadTableData();
         }
         return (<AllReviewsList data={this.state.tableData} goBack={this.goBack}
-                             sort={this.handleSort} column={this.state.column} direction={this.state.direction}/>)
+                                sort={this.handleSort} column={this.state.column} direction={this.state.direction}/>)
     }
 }
 

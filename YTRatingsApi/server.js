@@ -18,18 +18,13 @@ const schema = makeExecutableSchema({
     typeDefs,
     resolvers,
 });
+// Mongoose Promises deprecated so we reassign it here
+mongoose.Promise = global.Promise;
 
 const app = express();
 mongoose.connect(config.db);
 
 let db = mongoose.connection;
-
-// let corsOptions = {
-//     origin: 'http://localhost:3000',
-//     credentials: true,
-//     accept: 'application/x-www-form-urlencoded',
-//     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-// };
 
 app.use('*', cors({ origin: 'http://localhost:3000' }));
 // bodyParser is needed just for POST.

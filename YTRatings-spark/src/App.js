@@ -5,7 +5,7 @@ import {
     withRouter
 } from 'react-router-dom';
 
-import ResponsiveContainer from './common/ResponsiveContainer';
+import ResponsiveContainer from './common/Header/ResponsiveContainer';
 import Footer from './common/Footer';
 
 class App extends Component {

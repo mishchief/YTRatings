@@ -2,11 +2,10 @@ import React from 'react';
 import {Container, Table, Header} from 'semantic-ui-react';
 
 const ReviewTable = ({
-                         data, name, category, goBack, sort, column, direction
+                         data, name, category, sort, column, direction
                      }) => {
     return (
         <Container style={{paddingBottom: '2em'}}>
-            <button onClick={goBack}>Go Back</button>
             <Header>{category}</Header>
             <Header>By: {name}</Header>
             <Table sortable>

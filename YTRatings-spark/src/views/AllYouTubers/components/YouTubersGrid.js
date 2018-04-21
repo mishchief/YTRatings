@@ -11,8 +11,8 @@ const YouTubersGrid = (youtubers) => {
                     {data.map(youtuber =>
                         <Grid.Column key={youtuber._id} >
                             <Link to={`/youtuber/${youtuber.name}/`}>
-                                <Image size='medium' src={youtuber.img} centered />
-                                <Header content={`${youtuber.name} Reviews`} textAlign='center'/>
+                                <Image rounded size='medium' src={youtuber.img} centered />
+                                <Header content={youtuber.name} textAlign='center'/>
                             </Link>
                         </Grid.Column>
                     )}

@@ -19,13 +19,14 @@ import 'semantic-ui-css';
 import './styles/GlobalStyle.js';
 // Router and Views
 import NotFound from './common/NotFound'
-import HomeView from './views/HomeView/HomeView';
+import HomeView from './views/Home/HomeView';
 import CreateView from './views/CreateView';
-import DetailView from './views/DetailView/DetailView';
-import ReviewView from './views/ReviewView/ReviewView';
-import AllYouTubers from './views/AllYouTubersView/AllYouTubers';
-import CategoriesView from './views/CategoriesView/CategoriesView';
-import AllReviewsView from './views/AllReviewsView/AllReviewsView'
+import DetailView from './views/YouTuberProfile/DetailView';
+import ReviewsView from './views/Reviews/ReviewsView';
+import AllYouTubers from './views/AllYouTubers/AllYouTubers';
+import CategoriesView from './views/Categories/CategoriesView';
+import AllReviewsView from './views/AllReviews/AllReviewsView';
+import AboutView from './views/About/AboutView';
 
 
 const client = new ApolloClient({
@@ -41,18 +42,27 @@ const client = new ApolloClient({
     }
 });
 
+// Necessary for react router move to the top of the page when loading a new view
+const ScrollToTop = () => {
+    window.scrollTo(0, 0);
+    return null;
+};
+
 render((
     <ApolloProvider client={client}>
         <Router history={history}>
             <App>
+                <Route component={ScrollToTop}/>
                 <Switch>
                     <Route exact path="/" component={HomeView}/>
                     <Route exact path="/messages/create/" component={CreateView}/>
                     <Route exact path="/youtuber/:name/" component={DetailView}/>
-                    <Route exact path="/youtuber/:name/:category/" component={ReviewView}/>
+                    <Route exact path="/youtuber/:name/:category/" component={ReviewsView}/>
                     <Route exact path="/youtubers/" component={AllYouTubers}/>
                     <Route exact path="/categories/" component={CategoriesView}/>
                     <Route exact path="/allreviews/" component={AllReviewsView}/>
+                    <Route exact path="/about/" component={AboutView}/>
+                    <Route exact path="/donate/" component={NotFound}/>
                     <Route render={NotFound}/>
                 </Switch>
             </App>

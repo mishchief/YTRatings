@@ -2,7 +2,7 @@ import React from 'react';
 import {graphql} from 'react-apollo';
 import gql from 'graphql-tag';
 
-import YouTuberDetail from './YouTuberDetail';
+import YouTuberDetail from './components/YouTuberDetail';
 
 const query = gql`
 query ($name: String!){

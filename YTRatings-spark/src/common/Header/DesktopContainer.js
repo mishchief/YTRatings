@@ -8,7 +8,7 @@ import {
     Visibility,
 } from 'semantic-ui-react'
 import {Link} from 'react-router-dom';
-import history from '../history.js';
+import history from '../../history.js';
 
 class DesktopContainer extends Component {
     constructor(props) {

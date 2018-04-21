@@ -9,7 +9,7 @@ import {
     Sidebar,
 } from 'semantic-ui-react'
 import {Link} from 'react-router-dom';
-import history from '../history.js';
+import history from '../../history.js';
 
 class MobileContainer extends Component {
     constructor(props) {

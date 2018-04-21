@@ -3,7 +3,7 @@ import React from 'react';
 import {graphql} from 'react-apollo';
 import gql from 'graphql-tag';
 
-import ReviewTable from './ReviewTable';
+import ReviewsTable from './components/ReviewsTable';
 
 const query = gql`
 query Anything($name: String! $category: String!){
@@ -18,7 +18,7 @@ query Anything($name: String! $category: String!){
     }
 }`;
 
-class ReviewView extends React.Component {
+class ReviewsView extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -26,8 +26,7 @@ class ReviewView extends React.Component {
             column: null,
             tableData: [],
             direction: null,
-        }
-        this.goBack = this.goBack.bind(this);
+        };
         this.handleSort = this.handleSort.bind(this);
     }
 
@@ -68,9 +67,9 @@ class ReviewView extends React.Component {
         } else if (this.state.tableData.length === 0) {
             this.loadTableData();
         }
-        return (<ReviewTable data={this.state.tableData} category={this.state.categoryName} goBack={this.goBack}
-                             sort={this.handleSort} column={this.state.column} direction={this.state.direction}
-                             name={this.props.match.params.name}/>)
+        return (<ReviewsTable data={this.state.tableData} category={this.state.categoryName} goBack={this.goBack}
+                              sort={this.handleSort} column={this.state.column} direction={this.state.direction}
+                              name={this.props.match.params.name}/>)
     }
 }
 
@@ -83,5 +82,5 @@ const queryOptions = {
     }),
 };
 
-ReviewView = graphql(query, queryOptions)(ReviewView);
-export default ReviewView;
+ReviewsView = graphql(query, queryOptions)(ReviewsView);
+export default ReviewsView;
