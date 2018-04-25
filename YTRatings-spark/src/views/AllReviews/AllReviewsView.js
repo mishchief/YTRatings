@@ -3,6 +3,8 @@ import {graphql} from 'react-apollo';
 import gql from 'graphql-tag';
 import AllReviewsList from './components/AllReviewsList';
 import _ from "lodash";
+// Semantic styles
+import {Dimmer, Loader} from 'semantic-ui-react'
 
 class AllReviewsView extends React.Component {
     constructor(props) {
@@ -44,7 +46,11 @@ class AllReviewsView extends React.Component {
     render() {
         let {data} = this.props;
         if (data.loading) {
-            return <div>Loading...</div>
+            return (
+                <Dimmer active>
+                    <Loader/>
+                </Dimmer>
+            )
         } else if (this.state.tableData.length === 0) {
             this.loadTableData();
         }

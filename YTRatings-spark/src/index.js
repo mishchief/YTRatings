@@ -27,6 +27,7 @@ import AllYouTubers from './views/AllYouTubers/AllYouTubers';
 import CategoriesView from './views/Categories/CategoriesView';
 import AllReviewsView from './views/AllReviews/AllReviewsView';
 import AboutView from './views/About/AboutView';
+import DonateView from './views/Donate/DonateView';
 
 
 const client = new ApolloClient({
@@ -34,7 +35,7 @@ const client = new ApolloClient({
     //  `/graphql` endpoint on the same host
     // Pass the configuration option { uri: YOUR_GRAPHQL_API_URL } to the `HttpLink` to connect
     // to a different host
-    link: new HttpLink({uri: 'http://localhost:4000/graphql'}),
+    link: new HttpLink({uri: 'https://api.youtuberreviews.com/graphql'}),
     cache: new InMemoryCache(),
     opts: {
         credentials: 'same-origin',
@@ -62,7 +63,7 @@ render((
                     <Route exact path="/categories/" component={CategoriesView}/>
                     <Route exact path="/allreviews/" component={AllReviewsView}/>
                     <Route exact path="/about/" component={AboutView}/>
-                    <Route exact path="/donate/" component={NotFound}/>
+                    <Route exact path="/donate/" component={DonateView}/>
                     <Route render={NotFound}/>
                 </Switch>
             </App>

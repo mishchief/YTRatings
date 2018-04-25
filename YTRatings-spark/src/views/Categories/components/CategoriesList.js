@@ -1,5 +1,5 @@
 import React from 'react';
-import {Grid, List, Image, Container, Header} from 'semantic-ui-react';
+import {Grid, List, Image, Container} from 'semantic-ui-react';
 import {Link} from 'react-router-dom';
 
 const CategoriesList = (categories) => {

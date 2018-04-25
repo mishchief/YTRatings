@@ -1,7 +1,9 @@
 import React from 'react';
 import {graphql} from 'react-apollo';
 import gql from 'graphql-tag';
-
+// Semantic styles
+import {Dimmer, Loader} from 'semantic-ui-react'
+// Components
 import YouTuberDetail from './components/YouTuberDetail';
 
 const query = gql`
@@ -24,7 +26,11 @@ class DetailView extends React.Component {
     render() {
         let {data} = this.props;
         if (data.loading) {
-            return <div>Loading...</div>
+            return (
+                <Dimmer active>
+                    <Loader/>
+                </Dimmer>
+            )
         }
         return (<YouTuberDetail youtuber={data.youtuber}/>)
     }

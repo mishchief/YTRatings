@@ -2,7 +2,9 @@ import _ from 'lodash';
 import React from 'react';
 import {graphql} from 'react-apollo';
 import gql from 'graphql-tag';
-
+// Semantic styles
+import {Dimmer, Loader} from 'semantic-ui-react'
+// Components
 import ReviewsTable from './components/ReviewsTable';
 
 const query = gql`
@@ -63,7 +65,11 @@ class ReviewsView extends React.Component {
     render() {
         let {data} = this.props;
         if (data.loading) {
-            return <div>Loading...</div>
+            return (
+                <Dimmer active>
+                    <Loader/>
+                </Dimmer>
+            )
         } else if (this.state.tableData.length === 0) {
             this.loadTableData();
         }
